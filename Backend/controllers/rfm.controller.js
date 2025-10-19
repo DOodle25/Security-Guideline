@@ -950,12 +950,6 @@
 //   }
 // };
 
-
-
-
-
-
-
 const moment = require("moment");
 const Payment = require("../models/payment.model");
 const User = require("../models/user.model").User;

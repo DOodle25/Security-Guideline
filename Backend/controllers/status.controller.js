@@ -1,6 +1,8 @@
 const bcryptjs = require("bcryptjs");
 const { User } = require("../models/user.model");
 const Task = require("../models/task.model");
+const mongoose = require("mongoose");
+const { getGfs } = require("../db");
 
 exports.checkForm = async (req, res) => {
   try {
@@ -72,6 +74,36 @@ exports.checkStatus = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
     const status = { user: user };
     // console.log(status);
+    // profile image
+    if (user.profileImage) {
+      let gfs;
+      try {
+        gfs = getGfs();
+      } catch (error) {
+        return res.status(500).json({ message: "GridFS not initialized" });
+      }
+
+      let chunks = [];
+      const readStream = gfs.openDownloadStream(new mongoose.Types.ObjectId(user.profileImage));
+      readStream.on("data", (chunk) => {
+        chunks.push(chunk);
+      });
+
+      readStream.on("end", () => {
+        const imageBuffer = Buffer.concat(chunks);
+        // clone user object to avoid mutating mongoose doc
+        const userObj = user.toObject();
+        userObj.profileImage = `data:image/png;base64,${imageBuffer.toString("base64")}`;
+        status.user = userObj;
+        res.json({ status });
+      });
+
+      readStream.on("error", (err) => {
+        res.status(500).json({ message: "Error retrieving image" });
+      });
+
+      return; // prevent sending response twice
+    }
     res.json({ status });
   } catch (error) {
     res.status(400).json({ message: error.message });

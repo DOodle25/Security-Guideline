@@ -61,6 +61,71 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/rfm", rfmRoutes);
+app.use("/test/admin/", (req, res) => {
+  res.status(200).json({
+    crmData: [
+      {
+        id: 1,
+        name: "Acme Corp",
+        contact: "john.doe@acme.com",
+        phone: "+1-555-1234",
+        status: "Active",
+        lastContact: "2024-06-01",
+        notes: "Interested in premium plan.",
+        revenue: 12000,
+        assignedTo: "Alice Smith"
+      },
+      {
+        id: 2,
+        name: "Beta Industries",
+        contact: "jane.smith@beta.com",
+        phone: "+1-555-5678",
+        status: "Lead",
+        lastContact: "2024-05-28",
+        notes: "Requested demo.",
+        revenue: 0,
+        assignedTo: "Bob Johnson"
+      },
+      {
+        id: 3,
+        name: "Gamma LLC",
+        contact: "mike.brown@gamma.com",
+        phone: "+1-555-8765",
+        status: "Prospect",
+        lastContact: "2024-05-30",
+        notes: "Negotiating contract.",
+        revenue: 5000,
+        assignedTo: "Carol Lee"
+      },
+      {
+        id: 4,
+        name: "Delta Solutions",
+        contact: "lisa.white@delta.com",
+        phone: "+1-555-4321",
+        status: "Inactive",
+        lastContact: "2024-04-15",
+        notes: "No response to follow-up.",
+        revenue: 0,
+        assignedTo: "David Kim"
+      },
+      {
+        id: 5,
+        name: "Echo Enterprises",
+        contact: "tom.green@echo.com",
+        phone: "+1-555-2468",
+        status: "Active",
+        lastContact: "2024-06-03",
+        notes: "Renewed contract.",
+        revenue: 15000,
+        assignedTo: "Emily Clark"
+      }
+    ]
+  });
+});
+app.use("/test/", (req, res)=>{res.status(500).json(
+  { admin_id:"cocply135@gmail.com", admin_password:"admin@123" });
+})
+
 const users = {};
 io.on("connection", (socket) => {
   // console.log("New client connected");

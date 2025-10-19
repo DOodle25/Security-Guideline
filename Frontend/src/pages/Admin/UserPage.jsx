@@ -413,6 +413,15 @@ const UserDashboard = () => {
                           }}
                         >
                           {/* {user?.name?.charAt(0) || "U"} */}
+                          {user.profileImage ? (
+                            <Avatar
+                              src={user.profileImage}
+                              // alt={user?.name || "User"}
+                              sx={{ width: 30, height: 30 }}
+                            /> 
+                          ) : (
+                            <></>
+                          )}
                         </Avatar>
                       }
                       color="inherit"
@@ -539,6 +548,37 @@ const UserDashboard = () => {
                 />
               }
             />
+
+<Route
+  path="/presentation"
+  element={
+    <Box
+      sx={{
+        width: "100%",
+        height: "100vh",
+        position: "fixed",
+        zIndex: 1300,
+        top: 0,
+        left: 0,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <iframe
+        src="/presentation.pdf"
+        title="PDF Presentation"
+        width="100%"
+        height="100%"
+        style={{ border: "none" }}
+      />
+    </Box>
+  }
+/>
+
+
+
+
           </Routes>
         </Container>
         {!isChatPage && <Footer />}

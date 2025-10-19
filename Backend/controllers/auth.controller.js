@@ -9,6 +9,8 @@ const { OTP } = require("../models/otp.model");
 const passport = require("passport");
 const { sendEmail } = require("../utils/email");
 const { User } = require("../models/user.model");
+const mongoose = require("mongoose");
+const { getGfs } = require("../db");
 
 exports.register = async (req, res) => {
   const { name, email, age, role, password, otp, loginMethod } = req.body;
@@ -66,9 +68,40 @@ exports.login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
+
+    // profile image
+    if (user.profileImage) {
+      let gfs;
+      try {
+        gfs = getGfs();
+      } catch (error) {
+        return res.status(500).json({ message: "GridFS not initialized" });
+      }
+
+      let chunks = [];
+      const readStream = gfs.openDownloadStream(new mongoose.Types.ObjectId(user.profileImage));
+      readStream.on("data", (chunk) => {
+        chunks.push(chunk);
+      });
+
+      readStream.on("end", () => {
+        const imageBuffer = Buffer.concat(chunks);
+        // clone user object to avoid mutating mongoose doc
+        const userObj = user.toObject();
+        userObj.profileImage = `data:image/png;base64,${imageBuffer.toString("base64")}`;
+        res.json({ token, user: userObj });
+      });
+
+      readStream.on("error", (err) => {
+        res.status(500).json({ message: "Error retrieving image" });
+      });
+
+      return; // prevent sending response twice
+    }
+
     res.json({ token, user });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: error.message });
   }
 };
 exports.sendOtp = async (req, res) => {

@@ -1380,7 +1380,7 @@ function Login() {
               textShadow: "0 5px 15px rgba(0,0,0,0.3)",
             }}
           >
-            Star
+            secure
             <span
               style={{
                 // background: "linear-gradient(145deg, #ffffff, #e6e6e6)",
@@ -1394,7 +1394,7 @@ function Login() {
                 marginLeft: "7px",
               }}
             >
-              One
+              CRM
             </span>
           </Typography>
 

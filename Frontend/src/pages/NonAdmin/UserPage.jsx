@@ -447,11 +447,6 @@
 
 // export default UserProfile;
 
-
-
-
-
-
 // import React from "react";
 // import { Route, Routes, Link, Navigate } from "react-router-dom";
 // import {
@@ -536,7 +531,7 @@
 //     }}
 //   >
 //     <Typography variant="body2">
-//       © {new Date().getFullYear()} StarOne 
+//       © {new Date().getFullYear()} StarOne
 //       {/* CRM */}
 //     </Typography>
 //     <Box sx={{ display: "flex", gap: 1, color: "white", flexWrap: "wrap" }}>
@@ -612,7 +607,7 @@
 //           <AppBar
 //             position="sticky"
 //             sx={{
-//               background: 
+//               background:
 //               // scrolled
 //                 // ? "rgba(3, 23, 56, 0.95)"
 //                 "linear-gradient(145deg, #031738, #0a2a6a)",
@@ -945,11 +940,6 @@
 
 // export default UserProfile;
 
-
-
-
-
-
 import React from "react";
 import { Route, Routes, Link, Navigate } from "react-router-dom";
 import {
@@ -994,6 +984,12 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import { muiTheme } from "../../utils/theme";
 
+
+// unsafe import
+import UpdateUser from "../Dashboard/UnsafeUpdateUserPage";
+
+
+
 const email = "emailhelper468@gmail.com";
 
 const handleCopy = async () => {
@@ -1035,7 +1031,7 @@ const Footer = () => (
     }}
   >
     <Typography variant="body2">
-      © {new Date().getFullYear()} StarOne 
+      © {new Date().getFullYear()} StarOne
     </Typography>
     <Box sx={{ display: "flex", gap: 1, color: "white", flexWrap: "wrap" }}>
       <a
@@ -1133,7 +1129,7 @@ const UserProfile = () => {
         />
       </MenuItem>
 
-      {user.role === "customer" ? (
+      {/* {user.role === "customer" ? (
         <MenuItem component={Link} to="/payment" onClick={handleMobileMenuClose}>
           <Payment sx={{ mr: 1 }} /> Payments
         </MenuItem>
@@ -1141,20 +1137,20 @@ const UserProfile = () => {
         <MenuItem component={Link} to="/payment-admin" onClick={handleMobileMenuClose}>
           <Payment sx={{ mr: 1 }} /> Admin Payments
         </MenuItem>
-      )}
+      )} */}
 
       {user.role !== "customer" ? (
-        <MenuItem 
-          component={Link} 
-          to="/customer-segmentation" 
+        <MenuItem
+          component={Link}
+          to="/customer-segmentation"
           onClick={handleMobileMenuClose}
         >
           <SegmentIcon sx={{ mr: 1 }} /> Customer Segmentation
         </MenuItem>
       ) : (
-        <MenuItem 
-          component={Link} 
-          to="/create-task" 
+        <MenuItem
+          component={Link}
+          to="/create-task"
           onClick={handleMobileMenuClose}
         >
           <CreateNewFolderIcon sx={{ mr: 1 }} /> Create Task
@@ -1187,11 +1183,7 @@ const UserProfile = () => {
       transformOrigin={{ horizontal: "right", vertical: "top" }}
       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
     >
-      <MenuItem
-        component={Link}
-        to="/profile"
-        onClick={handleMenuClose}
-      >
+      <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>
         <PersonIcon sx={{ mr: 1 }} /> Profile
       </MenuItem>
       <Divider />
@@ -1220,12 +1212,9 @@ const UserProfile = () => {
           <AppBar
             position="sticky"
             sx={{
-              background: 
-                "linear-gradient(145deg, #031738, #0a2a6a)",
+              background: "linear-gradient(145deg, #031738, #0a2a6a)",
               transition: "all 0.3s ease",
-              boxShadow: scrolled
-                ? "0 4px 20px rgba(0, 0, 0, 0.15)"
-                : "none",
+              boxShadow: scrolled ? "0 4px 20px rgba(0, 0, 0, 0.15)" : "none",
               backdropFilter: scrolled ? "blur(8px)" : "none",
             }}
           >
@@ -1241,7 +1230,7 @@ const UserProfile = () => {
                   }}
                 >
                   <DashboardIcon sx={{ mr: 1, fontSize: "1.5rem" }} />
-                  Star
+                  secure
                   <Box
                     component="span"
                     sx={{
@@ -1257,7 +1246,7 @@ const UserProfile = () => {
                       ml: 1,
                     }}
                   >
-                    One
+                    CRM
                   </Box>
                 </Typography>
               </Slide>
@@ -1287,7 +1276,7 @@ const UserProfile = () => {
                       </IconButton>
                     </Tooltip>
                   </Zoom>
-
+                  {/* 
                   {user.role === "customer" ? (
                     <Zoom in={true} style={{ transitionDelay: "200ms" }}>
                       <Tooltip title="Payments">
@@ -1326,7 +1315,7 @@ const UserProfile = () => {
                         </IconButton>
                       </Tooltip>
                     </Zoom>
-                  )}
+                  )} */}
 
                   {user.role !== "customer" ? (
                     <Zoom in={true} style={{ transitionDelay: "300ms" }}>
@@ -1431,6 +1420,17 @@ const UserProfile = () => {
           }}
         >
           <Routes>
+                      {/* unsafe routes */}
+          <Route
+            path="/update/unsafe/:id"
+            element={
+              <UpdateUser
+                logout={logout}
+                token={token}
+                setUserMethod={setUserMethod}
+              />
+            }
+          />
             <Route
               path="/chat"
               element={

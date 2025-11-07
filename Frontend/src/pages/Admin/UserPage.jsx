@@ -236,13 +236,13 @@ const UserDashboard = () => {
       <MenuItem component={Link} to="/assign" onClick={handleMobileMenuClose}>
         <AssignmentIndIcon sx={{ mr: 1 }} /> Assign
       </MenuItem>
-      <MenuItem
+      {/* <MenuItem
         component={Link}
         to="/payment-admin"
         onClick={handleMobileMenuClose}
       >
         <Payment sx={{ mr: 1 }} /> Payments
-      </MenuItem>
+      </MenuItem> */}
       <Divider />
       <MenuItem component={Link} to="/profile" onClick={handleMobileMenuClose}>
         <PersonIcon sx={{ mr: 1 }} /> Profile
@@ -286,7 +286,7 @@ const UserDashboard = () => {
                   }}
                 >
                   <DashboardIcon sx={{ mr: 1, fontSize: "1.5rem" }} />
-                  Star
+                  secure
                   <Box
                     component="span"
                     sx={{
@@ -303,7 +303,7 @@ const UserDashboard = () => {
                       ml: 1,
                     }}
                   >
-                    One
+                    CRM
                   </Box>
                 </Typography>
               </Slide>
@@ -366,7 +366,7 @@ const UserDashboard = () => {
                       </IconButton>
                     </Tooltip>
                   </Zoom>
-                  <Zoom in={true} style={{ transitionDelay: "400ms" }}>
+                  {/* <Zoom in={true} style={{ transitionDelay: "400ms" }}>
                     <Tooltip title="Payments">
                       <IconButton
                         color="inherit"
@@ -383,7 +383,7 @@ const UserDashboard = () => {
                         <Payment />
                       </IconButton>
                     </Tooltip>
-                  </Zoom>
+                  </Zoom> */}
                   {/* <Zoom in={true} style={{ transitionDelay: "500ms" }}>
                     <Tooltip title="Notifications">
                       <IconButton
@@ -526,7 +526,7 @@ const UserDashboard = () => {
                 />
               }
             />
-            <Route path="/payment-admin" element={<PaymentAdminPage />} />
+            {/* <Route path="/payment-admin" element={<PaymentAdminPage />} /> */}
             <Route
               path="/assign"
               element={

@@ -1,0 +1,5 @@
+# Ignore folders related to portable MongoDB
+/PortableMongo/
+/PortableNode/
+/MongoData/
+/MongoLogs/

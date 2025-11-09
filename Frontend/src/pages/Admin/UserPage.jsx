@@ -412,8 +412,8 @@ const UserDashboard = () => {
                             bgcolor: "secondary.main",
                           }}
                         >
-                          {/* {user?.name?.charAt(0) || "U"} */}
-                          {user.profileImage ? (
+                          {user?.name?.charAt(0) || "U"}
+                          {/* {user.profileImage ? (
                             <Avatar
                               src={user.profileImage}
                               // alt={user?.name || "User"}
@@ -421,7 +421,7 @@ const UserDashboard = () => {
                             /> 
                           ) : (
                             <></>
-                          )}
+                          )} */}
                         </Avatar>
                       }
                       color="inherit"

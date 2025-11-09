@@ -17,5 +17,5 @@ node_modules
 *.sln
 *.sw?
 .env
-.env-online
 .env-offline
+.env-online

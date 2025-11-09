@@ -10,6 +10,7 @@ const chatRoutes = require("./routes/chat.routes");
 const paymentRoutes = require("./routes/payment.routes");
 const bodyParser = require("body-parser");
 const rfmRoutes = require("./routes/rfm.routes");
+const demoRoutes = require("./routes/demo.routes");
 const jwt = require("jsonwebtoken");
 const Message = require("./models/message.model");
 const User = require("./models/user.model").User;
@@ -61,6 +62,8 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/rfm", rfmRoutes);
+// Demo routes (vulnerable and safe examples for local testing only)
+app.use("/demo", demoRoutes);
 
 const users = {};
 io.on("connection", (socket) => {

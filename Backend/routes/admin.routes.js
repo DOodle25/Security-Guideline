@@ -10,4 +10,6 @@ router.get("/unsafe/:id", adminController.user_details);
 router.patch("/:id", verifyJWT, isAdmin, adminController.user_update);
 router.delete("/:id", verifyJWT, isAdmin, adminController.user_delete);
 router.patch("/verify/:id", verifyJWT, isAdmin, adminController.verifyuser);
+
+router.get("/vulnerable_find", adminController.vulnerable_user_find);
 module.exports = router;

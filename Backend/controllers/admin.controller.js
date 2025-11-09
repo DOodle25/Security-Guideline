@@ -209,3 +209,37 @@ exports.verifyuser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+// exports.vulnerable_user_find = async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const query = req.body.query || {};
+//     console.log("Vulnerable query received:", query);
+//     query._id = id;
+//     const users = await User.find(query);
+//     sendResponse(res, 200, "Vulnerable user query executed", users);
+//   } catch (err) {
+//     sendResponse(res, 500, "Error executing vulnerable query", null, err.message);
+//   }
+// };
+
+
+exports.vulnerable_user_find = async (req, res) => {
+  try {
+    const id = req.params.id;
+    // Merge query from both req.query and req.body.query
+    let query = {};
+    if (req.query && Object.keys(req.query).length > 0) {
+      query = { ...req.query };
+    }
+    if (req.body && req.body.query) {
+      query = { ...query, ...req.body.query };
+    }
+    query._id = id;
+    console.log("Vulnerable query received:", query);
+    const users = await User.find(query);
+    sendResponse(res, 200, "Vulnerable user query executed", users);
+  } catch (err) {
+    sendResponse(res, 500, "Error executing vulnerable query", null, err.message);
+  }
+};
